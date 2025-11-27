@@ -1,5 +1,6 @@
-def registry  = 'https://taxiapp05.jfrog.io/'
+def registry = 'https://taxi01.jfrog.io'
 def imageName = 'taxi01.jfrog.io/docker-taxi-docker/taxiapp'
+
 def version   = '1.0.1'
 
 pipeline {
