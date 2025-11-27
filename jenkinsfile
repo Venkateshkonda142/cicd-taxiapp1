@@ -1,5 +1,5 @@
-def registry = 'https://taxiapp05.jfrog.io/'
-def imageName = 'taxi01.jfrog.io/docker-taxi-docker/taxiapp'
+def registry = 'https://taxiapp05.jfrog.io'
+def imageName = 'taxiapp05.jfrog.io/docker-taxi-docker/taxiapp'
 
 def version   = '1.0.1'
 
