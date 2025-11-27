@@ -1,6 +1,5 @@
 def registry = 'https://taxiapp05.jfrog.io'
 def imageName = 'taxiapp05.jfrog.io/docker-taxi-docker/taxiapp'
-
 def version   = '1.0.1'
 
 pipeline {
@@ -97,7 +96,7 @@ pipeline {
                 script {
                     echo '<--------------- Docker Publish Started --------------->'
 
-                    docker.withRegistry(registry, 'jfrog-cred') {
+                    docker.withRegistry("https://taxiapp05.jfrog.io", 'jfrog-cred') {
                         app.push()
                     }
 
