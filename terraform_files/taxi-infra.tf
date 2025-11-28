@@ -1,6 +1,18 @@
-provider "aws" {
-  region = "us-east-1"
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
 }
+
+provider "aws" {
+  region  = "us-east-1"
+
+}
+
+
 data "aws_vpc" "default" {
   default = true
 }
@@ -105,4 +117,22 @@ resource "aws_security_group" "demo-sg" {
     Name = "ssh-port"
 
   }
+}
+
+module "sgs" {
+  source = "../sg_eks"
+  vpc_id = data.aws_vpc.default.id
+}
+
+# EKS Cluster Module
+module "eks" {
+  source     = "../eks"
+  vpc_id     = data.aws_vpc.default.id
+  subnet_ids = data.aws_subnets.default.ids
+  sg_ids     = module.sgs.security_group_public
+}
+
+
+output "eks_cluster_endpoint" {
+  value = module.eks.endpoint
 }
